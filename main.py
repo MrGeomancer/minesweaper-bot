@@ -55,10 +55,9 @@ def twos():
             listOfClosed = list(pyautogui.locateAllOnScreen('img\closed.png', region=(
                 listOftwos[i][0] - 60, listOftwos[i][1] - 60, 140, 140)))
             listOfFlag2 = list(pyautogui.locateAllOnScreen('img\\flag.png', region=(
-                listOftwos[i][0], listOftwos[i][1] - 60, 140, 140)))
+                listOftwos[i][0]-60, listOftwos[i][1] - 60, 140, 140)))
         # print(listOfClosed)
         if len(listOfClosed) == 1 and len(listOfFlag2) == 1:
-            # print(listOfClosed)
             pyautogui.click(pyautogui.center(listOfClosed[0]), button='right')
             pyautogui.doubleClick(pyautogui.center(listOftwos[i]))
         elif len(listOfFlag2) == 2:
@@ -80,8 +79,45 @@ def twos():
         threes()
 
 def threes():
-    print('я в ахуи')
+    listOfthrees = list(pyautogui.locateAllOnScreen('img\\three.png'))
+    for i in range(len(listOfthrees)):
+        # print(i)
+        # print(listOfOnes[i][0], listOfOnes[i][1], listOfOnes[i][0]+33, listOfOnes[i][1]+33)
+        pyautogui.doubleClick(pyautogui.center(listOfthrees[i]))
+        if listOfthrees[i][0] - 60 < 0:
+            listOfClosed = list(pyautogui.locateAllOnScreen('img\closed.png', region=(
+                1, listOfthrees[i][1] - 60, 140, 140)))
+            listOfFlag2 = list(pyautogui.locateAllOnScreen('img\\flag.png', region=(
+                1, listOfthrees[i][1] - 60, 140, 140)))
+        else:
+            listOfClosed = list(pyautogui.locateAllOnScreen('img\closed.png', region=(
+                listOfthrees[i][0] - 60, listOfthrees[i][1] - 60, 140, 140)))
+            listOfFlag2 = list(pyautogui.locateAllOnScreen('img\\flag.png', region=(
+                listOfthrees[i][0] - 60, listOfthrees[i][1] - 60, 140, 140)))
+        # print(listOfClosed)
+        if len(listOfClosed) == 1 and len(listOfFlag2) == 2 or len(listOfClosed) == 2 and len(listOfFlag2) == 1:
+            pyautogui.click(pyautogui.center(listOfClosed[0]), button='right')
+            pyautogui.doubleClick(pyautogui.center(listOfthrees[i]))
+        elif len(listOfFlag2) == 3:
+            pyautogui.doubleClick(pyautogui.center(listOfthrees[i]))
+    secondListOfthrees = list(pyautogui.locateAllOnScreen('img\one.png'))
+    for i2 in range(len(secondListOfthrees)):
+        if secondListOfthrees[i2][0] - 60 < 0:
+            listOfFlag1 = list(pyautogui.locateAllOnScreen('img\\flag.png', region=(
+                1, secondListOfthrees[i2][1] - 60, 140, 140)))
+        else:
+            listOfFlag1 = list(pyautogui.locateAllOnScreen('img\\flag.png', region=(
+                secondListOfthrees[i2][0] - 60, secondListOfthrees[i2][1] - 60, 140, 140)))
+        if len(listOfFlag1) == 3:
+            pyautogui.doubleClick(pyautogui.center(secondListOfthrees[i2]))
+    thirdListOfthrees = list(pyautogui.locateAllOnScreen('img\one.png'))
+    if len(thirdListOfthrees) > len(secondListOfthrees):
+        threes()
+    else:
+        ones()
 
+def fours():
+    print('я в ахуи')
 
 # listOfOnes = list(pyautogui.locateAllOnScreen('img\one.png'))
 # scr = pyautogui.screenshot('skrin.png')
@@ -138,6 +174,7 @@ def threes():
 
 if __name__ == "__main__":
     ones()
+    
 # print(listOfOnes)
 # print(len(listOfOnes))
 # print(listOfOnes[0])
